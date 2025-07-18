@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResponsaCraft - Jornada do Yago</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #222; color: #fff; margin: 0; padding: 20px; }
+    h1 { color: #00ff99; }
+    .avatar { width: 100px; }
+    .section { margin-top: 20px; }
+    .task { margin: 5px 0; }
+    button { margin-top: 10px; padding: 10px 20px; background: #00ff99; border: none; color: #000; cursor: pointer; border-radius: 5px; }
+    .score { font-size: 1.2em; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🎮 ResponsaCraft - RedSubZero04</h1>
+  <p><strong>Data de hoje:</strong> <span id="data"></span></p>
+  <img src="avatar_yago.png" alt="Avatar Yago" class="avatar" />
+
+  <div class="section">
+    <h2>Nível Básico (1 ponto cada)</h2>
+    <div class="task"><input type="checkbox" data-points="1"> Escovar os dentes (3x)</div>
+    <div class="task"><input type="checkbox" data-points="1"> Passar desodorante / perfume</div>
+    <div class="task"><input type="checkbox" data-points="1"> Pentear o cabelo</div>
+    <div class="task"><input type="checkbox" data-points="1"> Banho sem ser lembrado</div>
+    <div class="task"><input type="checkbox" data-points="1"> Lavar o rosto</div>
+    <div class="task"><input type="checkbox" data-points="1"> Dormir no horário (23h)</div>
+    <div class="task"><input type="checkbox" data-points="1"> Lavar louça</div>
+    <div class="task"><input type="checkbox" data-points="1"> Tirar a louça do quarto</div>
+  </div>
+
+  <div class="section">
+    <h2>Nível Médio (2 pontos cada)</h2>
+    <div class="task"><input type="checkbox" data-points="2"> Arrumar a cama</div>
+    <div class="task"><input type="checkbox" data-points="2"> Arrumar o quarto</div>
+    <div class="task"><input type="checkbox" data-points="2"> Organizar guarda-roupa</div>
+    <div class="task"><input type="checkbox" data-points="2"> Trocar lençol e fronha</div>
+    <div class="task"><input type="checkbox" data-points="2"> Varrer ou passar pano no quarto</div>
+  </div>
+
+  <div class="section">
+    <h2>Nível Desafiador (10 pontos cada)</h2>
+    <div class="task"><input type="checkbox" data-points="10"> Ajudar a mãe sem ser pedido</div>
+    <div class="task"><input type="checkbox" data-points="10"> Regar as plantas</div>
+    <div class="task"><input type="checkbox" data-points="10"> Tentar aprender algo novo</div>
+  </div>
+
+  <div class="section">
+    <h2>Penalizações</h2>
+    <div class="task"><input type="checkbox" data-points="-1"> Esqueceu tarefa importante</div>
+    <div class="task"><input type="checkbox" data-points="-1"> Procrastinou sem necessidade</div>
+  </div>
+
+  <div class="score">
+    <strong>Pontuação total:</strong> <span id="pontuacao">0</span>
+  </div>
+
+  <button onclick="calcular()">Calcular Pontos</button>
+
+  <script>
+    document.getElementById("data").textContent = new Date().toLocaleDateString('pt-BR');
+    function calcular() {
+      let pontos = 0;
+      document.querySelectorAll("input[type=checkbox]").forEach(el => {
+        if (el.checked) pontos += parseInt(el.dataset.points);
+      });
+      document.getElementById("pontuacao").textContent = pontos;
+    }
+  </script>
+</body>
+</html>
